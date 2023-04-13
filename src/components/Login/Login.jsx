@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import app from '../../firebase/firebase.init';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser);
+                
                 setUser(loggedInUser);
 
 
@@ -25,10 +25,22 @@ const Login = () => {
             })
     }
 
+    const handleSignOut=()=>{
+        signOut(auth)
+        .then((result)=>{
+            console.log(result);
+            setUser(null);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+
     return (
         <div className='user-container'>
-            <button onClick={handleSignInWithGoogle} className='login-btn'>Login</button>{' '}
-            <button className='sign-out-btn'>Sign out</button>
+        {user ? <button onClick={handleSignOut} className='sign-out-btn'>Sign out</button>
+        :
+        <button onClick={handleSignInWithGoogle} className='login-btn'>Login</button>}
 
             <div className='user-info'>
                 {user && <div>
