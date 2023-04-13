@@ -1,0 +1,46 @@
+.user-container{
+    border: 1px solid forestgreen;
+    border-radius: 15px;
+    padding: 15px;
+    
+}
+
+.user-info{
+    border: 1px solid forestgreen;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.user-info img{
+    border: 1px solid forestgreen;
+    border-radius: 100%;
+}
+
+
+.btn-login{
+    background-color:forestgreen;
+    margin-top: 10px;
+    color:white;
+    text-align: center;
+}
+
+@media screen and (max-width:576px) {
+    .user-container{
+        display: grid;
+        grid-template-columns: 1fr;
+       
+    }
+    .user-info{
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-login{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+}
+        
