@@ -18,8 +18,15 @@
 }
 
 
-.btn-login{
+.login-btn{
     background-color:forestgreen;
+    margin-top: 10px;
+    color:white;
+    text-align: center;
+}
+
+.sign-out-btn{
+    background-color:firebrick;
     margin-top: 10px;
     color:white;
     text-align: center;
@@ -35,12 +42,19 @@
         display: flex;
         flex-direction: column;
     }
-    .btn-login{
+    .login-btn{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         
     }
+    .sign-out-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
         
+    

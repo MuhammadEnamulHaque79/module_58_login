@@ -27,7 +27,8 @@ const Login = () => {
 
     return (
         <div className='user-container'>
-            <button onClick={handleSignInWithGoogle} className='btn-login'>Login</button>
+            <button onClick={handleSignInWithGoogle} className='login-btn'>Login</button>{' '}
+            <button className='sign-out-btn'>Sign out</button>
 
             <div className='user-info'>
                 {user && <div>
