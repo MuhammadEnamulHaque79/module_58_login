@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import './Login.css';
 import app from '../../firebase/firebase.init';
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 
 
 const Login = () => {
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const [user, setUser] = useState(null);
 
     const handleSignInWithGoogle = () => {
 
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, googleProvider)
             .then((result) => {
-                const loggedInUser = result.user;
+                const loggedInGoogleUser = result.user;
                 
-                setUser(loggedInUser);
+                setUser(loggedInGoogleUser);
 
 
             })
@@ -23,6 +24,18 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             })
+    };
+
+    const handleSingInInWithGithub = ()=>{
+        signInWithPopup(auth, githubProvider)
+        .then((result)=>{
+            const LoggedInGithubUser = result.user;
+            console.log(LoggedInGithubUser);
+            setUser(LoggedInGithubUser);
+        }).catch((error)=>{
+            console.log(error);
+        })
+        
     }
 
     const handleSignOut=()=>{
@@ -40,7 +53,12 @@ const Login = () => {
         <div className='user-container'>
         {user ? <button onClick={handleSignOut} className='sign-out-btn'>Sign out</button>
         :
-        <button onClick={handleSignInWithGoogle} className='login-btn'>Login</button>}
+        <div>
+            <button onClick={handleSignInWithGoogle} className='login-btn'>LoginWithGoogle</button>{' '}
+            <button onClick={handleSingInInWithGithub} className='login-btn'>LoginWithGithub</button>
+        </div>
+        }
+       
 
             <div className='user-info'>
                 {user && <div>
